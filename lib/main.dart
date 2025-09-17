@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  themeModeProvider.ToggleTheme();
+                  themeModeProvider.toggleTheme();
                 },
                 child: Text('change theme'),
               ),
