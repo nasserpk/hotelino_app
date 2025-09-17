@@ -1,68 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:hotelino_app/core/theme/app_theme.dart';
+import 'package:hotelino_app/core/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create:
+              (_) => ThemeProvider(
+                WidgetsBinding.instance.platformDispatcher.platformBrightness,
+              ),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  @override
+  void didChangePlatformBrightness() {
+    super.didChangePlatformBrightness();
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    Provider.of<ThemeProvider>(
+      context,
+      listen: false,
+    ).updatedBrightness(brightness);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+    return Consumer<ThemeProvider>(
+      builder: (context, themeModeProvider, child) {
+        return MaterialApp(
+          theme:
+              themeModeProvider.brightness == Brightness.light
+                  ? AppTheme.lightTheme
+                  : AppTheme.darkTheme,
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            appBar: AppBar(),
+            body: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  themeModeProvider.ToggleTheme();
+                },
+                child: Text('change theme'),
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+          ),
+        );
+      },
     );
   }
 }
