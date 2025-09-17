@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/core/theme/app_theme.dart';
 import 'package:hotelino_app/core/theme/theme_provider.dart';
+import 'package:hotelino_app/routes/app_route.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -58,22 +59,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
         return MaterialApp(
+          title: 'Hotelino',
           theme:
               themeModeProvider.brightness == Brightness.light
                   ? AppTheme.lightTheme
                   : AppTheme.darkTheme,
           debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            appBar: AppBar(),
-            body: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  themeModeProvider.toggleTheme();
-                },
-                child: Text('change theme'),
-              ),
-            ),
-          ),
+          routes: AppRoute.routes,
+          initialRoute: AppRoute.onboarding,
         );
       },
     );
