@@ -15,4 +15,9 @@ class OnboardingProvider with ChangeNotifier {
     onboardingData = repository.onboardingData;
     notifyListeners();
   }
+
+  void updateCurrentPage(int index) {
+    currentPage = index;
+    notifyListeners();
+  }
 }

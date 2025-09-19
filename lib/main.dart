@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/core/theme/app_theme.dart';
 import 'package:hotelino_app/core/theme/theme_provider.dart';
+import 'package:hotelino_app/features/onboarding/data/presentation/onboarding_provider.dart';
+import 'package:hotelino_app/features/onboarding/data/repositories/onboarding_repository.dart';
 import 'package:hotelino_app/routes/app_route.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,9 @@ void main() {
               (_) => ThemeProvider(
                 WidgetsBinding.instance.platformDispatcher.platformBrightness,
               ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => OnboardingProvider(OnboardingRepository()),
         ),
       ],
       child: const MyApp(),
