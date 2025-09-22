@@ -4,6 +4,7 @@ import 'package:hotelino_app/core/theme/theme_provider.dart';
 import 'package:hotelino_app/features/onboarding/data/presentation/onboarding_provider.dart';
 import 'package:hotelino_app/features/onboarding/data/repositories/onboarding_repository.dart';
 import 'package:hotelino_app/routes/app_route.dart';
+import 'package:hotelino_app/shared/widgets/bottom_navigation.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -63,6 +64,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
+        return MaterialApp(
+          theme: ThemeData(colorSchemeSeed: Colors.amber),
+          home: BottomNavigation(),
+        );
+
         return MaterialApp(
           title: 'Hotelino',
           theme:
