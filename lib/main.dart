@@ -65,11 +65,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
         return MaterialApp(
-          theme: ThemeData(colorSchemeSeed: Colors.amber),
-          home: BottomNavigation(),
-        );
-
-        return MaterialApp(
           title: 'Hotelino',
           theme:
               themeModeProvider.brightness == Brightness.light
