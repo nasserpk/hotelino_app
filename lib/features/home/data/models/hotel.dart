@@ -1,3 +1,6 @@
+import 'package:hotelino_app/features/home/data/models/bed_type.dart';
+import 'package:hotelino_app/features/home/data/models/location.dart';
+
 class Hotel {
   final String id;
   final String name;
@@ -63,42 +66,5 @@ class Hotel {
     "address": address,
     "bedType": bedType.toJson(),
     "amenities": List<dynamic>.from(amenities.map((x) => x)),
-  };
-}
-
-class BedType {
-  final String type;
-  final int count;
-  final String details;
-
-  BedType({required this.type, required this.count, required this.details});
-
-  factory BedType.fromJson(Map<String, dynamic> json) => BedType(
-    type: json["type"],
-    count: json["count"],
-    details: json["details"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "type": type,
-    "count": count,
-    "details": details,
-  };
-}
-
-class Location {
-  final double latitude;
-  final double longitude;
-
-  Location({required this.latitude, required this.longitude});
-
-  factory Location.fromJson(Map<String, dynamic> json) => Location(
-    latitude: json["latitude"].toDouble(),
-    longitude: json["longitude"].toDouble(),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "latitude": latitude,
-    "longitude": longitude,
   };
 }
