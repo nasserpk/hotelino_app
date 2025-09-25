@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hotelino_app/bootstrap.dart';
 import 'package:hotelino_app/core/theme/app_theme.dart';
 import 'package:hotelino_app/core/theme/theme_provider.dart';
+import 'package:hotelino_app/features/home/presentation/provider/home_provider.dart';
+import 'package:hotelino_app/features/home/repositories/hotel_repository.dart';
 import 'package:hotelino_app/features/onboarding/data/presentation/onboarding_provider.dart';
 import 'package:hotelino_app/features/onboarding/data/repositories/onboarding_repository.dart';
 import 'package:hotelino_app/routes/app_route.dart';
+import 'package:hotelino_app/shared/services/json_data_service.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await lazyBootStrap();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.remove();
+
+  final hotelRepository = HotelRepository(jsonDataService: JsonDataService());
 
   runApp(
     MultiProvider(
@@ -21,6 +31,7 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => OnboardingProvider(OnboardingRepository()),
         ),
+        ChangeNotifierProvider(create: (_) => HomeProvider(hotelRepository)),
       ],
       child: const MyApp(),
     ),
