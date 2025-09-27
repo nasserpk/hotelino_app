@@ -4,7 +4,9 @@ import 'package:hotelino_app/bootstrap.dart';
 import 'package:hotelino_app/core/theme/app_theme.dart';
 import 'package:hotelino_app/core/theme/theme_provider.dart';
 import 'package:hotelino_app/features/home/presentation/provider/home_provider.dart';
+import 'package:hotelino_app/features/home/presentation/provider/profile_provider.dart';
 import 'package:hotelino_app/features/home/repositories/hotel_repository.dart';
+import 'package:hotelino_app/features/home/repositories/profile_repository.dart';
 import 'package:hotelino_app/features/onboarding/data/presentation/onboarding_provider.dart';
 import 'package:hotelino_app/features/onboarding/data/repositories/onboarding_repository.dart';
 import 'package:hotelino_app/routes/app_route.dart';
@@ -32,6 +34,9 @@ Future<void> main() async {
           create: (_) => OnboardingProvider(OnboardingRepository()),
         ),
         ChangeNotifierProvider(create: (_) => HomeProvider(hotelRepository)),
+        ChangeNotifierProvider(
+          create: (_) => ProfileProvider(ProfileRepository(), hotelRepository),
+        ),
       ],
       child: const MyApp(),
     ),
