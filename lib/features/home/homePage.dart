@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/home/presentation/provider/home_provider.dart';
+import 'package:hotelino_app/features/home/widget/add_banner.dart';
 import 'package:hotelino_app/features/home/widget/home_appbar.dart';
+import 'package:hotelino_app/features/home/widget/serach_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,6 +12,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeProvider = Provider.of<HomeProvider>(context);
 
-    return Scaffold(appBar: HomeAppBar(), body: Center());
+    return Scaffold(
+      appBar: HomeAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(height: 16),
+            SerachBarWidget(),
+            SizedBox(height: 16),
+            AddBaner(),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
   }
 }
