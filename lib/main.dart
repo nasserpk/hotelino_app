@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hotelino_app/bootstrap.dart';
 import 'package:hotelino_app/core/theme/app_theme.dart';
 import 'package:hotelino_app/core/theme/theme_provider.dart';
+import 'package:hotelino_app/features/home/presentation/provider/favorite_item.provider.dart';
 import 'package:hotelino_app/features/home/presentation/provider/home_provider.dart';
 import 'package:hotelino_app/features/home/presentation/provider/profile_provider.dart';
 import 'package:hotelino_app/features/home/repositories/hotel_repository.dart';
@@ -36,6 +37,9 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => HomeProvider(hotelRepository)),
         ChangeNotifierProvider(
           create: (_) => ProfileProvider(ProfileRepository(), hotelRepository),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavoriteItemProvider(hotelRepository),
         ),
       ],
       child: const MyApp(),
