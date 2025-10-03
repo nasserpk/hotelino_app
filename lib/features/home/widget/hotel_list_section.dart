@@ -40,9 +40,7 @@ class HotelListSection extends StatelessWidget {
           height: 360,
           child: ListView.builder(
             itemCount: hotels.length,
-            itemBuilder: (context, index) {
-              return Padding(padding: EdgeInsets.symmetric());
-            },
+            itemBuilder: (context, index) {},
           ),
         ),
       ],
