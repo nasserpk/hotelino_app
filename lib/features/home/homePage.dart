@@ -3,7 +3,9 @@ import 'package:hotelino_app/features/home/presentation/provider/home_provider.d
 import 'package:hotelino_app/features/home/widget/add_banner.dart';
 import 'package:hotelino_app/features/home/widget/home_appbar.dart';
 import 'package:hotelino_app/features/home/widget/hotel_list_section.dart';
+import 'package:hotelino_app/features/home/widget/hotel_vertical_list.dart';
 import 'package:hotelino_app/features/home/widget/serach_bar.dart';
+import 'package:hotelino_app/features/home/widget/story_carousel.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,6 +35,22 @@ class HomePage extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
+            Consumer<HomeProvider>(
+              builder: (context, homeProvider, child) {
+                return StoryCarousel(
+                  images: homeProvider.getStoryImages(),
+                  titles: homeProvider.storyTitles,
+                );
+              },
+            ),
+            Consumer<HomeProvider>(
+              builder: (context, homeProvider, child) {
+                return HotelVerticalList(
+                  title: "جدیدترین هتل ها",
+                  hotels: homeProvider.getNewestHotels(),
+                );
+              },
+            ),
           ],
         ),
       ),
