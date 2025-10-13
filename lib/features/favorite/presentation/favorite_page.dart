@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:hotelino_app/features/favorite/widgets/favorite_item.dart';
+import 'package:hotelino_app/features/home/widget/serach_bar.dart';
+
+class FavoritePage extends StatelessWidget {
+  const FavoritePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "هتل های مورد علاقه",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            const SizedBox(height: 16),
+            SerachBarWidget(),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
