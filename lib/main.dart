@@ -39,7 +39,7 @@ Future<void> main() async {
           create: (_) => ProfileProvider(ProfileRepository(), hotelRepository),
         ),
         ChangeNotifierProvider(
-          create: (_) => FavoriteItemProvider(hotelRepository),
+          create: (_) => FavotireItemProvider(hotelRepository),
         ),
       ],
       child: const MyApp(),

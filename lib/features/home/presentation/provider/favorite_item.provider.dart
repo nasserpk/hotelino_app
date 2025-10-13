@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/home/data/models/hotel.dart';
 import 'package:hotelino_app/features/home/repositories/hotel_repository.dart';
 
-class FavoriteItemProvider extends ChangeNotifier {
+class FavotireItemProvider extends ChangeNotifier {
   final HotelRepository _hotelRepository;
 
-  FavoriteItemProvider(this._hotelRepository) {
+  FavotireItemProvider(this._hotelRepository) {
     fetchHotels();
   }
+
   final List<String> _favoriteHotelIds = [];
-  List<Hotel> get favoriteHotelId =>
+  List<Hotel> get favoriteHotelList =>
       _hotels.where((hotel) => _favoriteHotelIds.contains(hotel.id)).toList();
 
   List<Hotel> _hotels = [];
@@ -19,7 +20,7 @@ class FavoriteItemProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isfavorite(String hotelId) {
+  bool isFavorite(String hotelId) {
     return _favoriteHotelIds.contains(hotelId);
   }
 
@@ -29,6 +30,7 @@ class FavoriteItemProvider extends ChangeNotifier {
     } else {
       _favoriteHotelIds.add(hotelId);
     }
+
     notifyListeners();
   }
 }

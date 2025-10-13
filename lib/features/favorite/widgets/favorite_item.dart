@@ -112,7 +112,7 @@ class FavoriteHotelCard extends StatelessWidget {
                 ),
                 child: Image.network(
                   networkUrl(hotel.images[0]),
-                  width: 100,
+                  width: 85,
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),

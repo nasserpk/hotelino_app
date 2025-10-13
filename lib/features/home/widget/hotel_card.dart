@@ -14,8 +14,8 @@ class HotelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteProvider = Provider.of<FavoriteItemProvider>(context);
-    final isFavorite = favoriteProvider.isfavorite(hotel.id);
+    final favoriteProvider = Provider.of<FavotireItemProvider>(context);
+    final isFavorite = favoriteProvider.isFavorite(hotel.id);
 
     return SizedBox(
       width: 280,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/favorite/widgets/favorite_item.dart';
+import 'package:hotelino_app/features/home/presentation/provider/favorite_item.provider.dart';
+import 'package:hotelino_app/features/home/presentation/provider/profile_provider.dart';
+import 'package:hotelino_app/features/home/widget/hotel_list_section.dart';
 import 'package:hotelino_app/features/home/widget/serach_bar.dart';
+import 'package:provider/provider.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -10,7 +14,7 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "هتل های مورد علاقه",
+          'هتل های مورد علاقه',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         centerTitle: true,
@@ -20,8 +24,43 @@ class FavoritePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const SizedBox(height: 16),
-            SerachBarWidget(),
+            const SerachBarWidget(),
             const SizedBox(height: 16),
+            Consumer<FavotireItemProvider>(
+              builder: (context, favoriteProvider, child) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: favoriteProvider.favoriteHotelList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 6,
+                      ),
+                      child: FavoriteHotelCard(
+                        hotel: favoriteProvider.favoriteHotelList[index],
+                        onRemoveFavotiteClicked: (hotelId) {
+                          favoriteProvider.toggleFavorite(hotelId);
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            Consumer<ProfileProvider>(
+              builder: (context, profileProvider, child) {
+                if (profileProvider.recentlyViewedHotels.isNotEmpty) {
+                  return HotelListSection(
+                    title: "بازدید های اخیر",
+                    hotels: profileProvider.recentlyViewedHotels,
+                  );
+                } else {
+                  return SizedBox();
+                }
+              },
+            ),
           ],
         ),
       ),
