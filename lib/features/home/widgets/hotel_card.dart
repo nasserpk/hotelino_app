@@ -3,10 +3,10 @@ import 'package:hotelino_app/core/utils/network.dart';
 import 'package:hotelino_app/core/utils/price_formatter.dart';
 import 'package:hotelino_app/features/home/data/models/hotel.dart';
 import 'package:hotelino_app/features/home/presentation/provider/favorite_item.provider.dart';
-import 'package:hotelino_app/features/home/widget/animated_favorite_button.dart';
-import 'package:hotelino_app/routes/test.dart';
+import 'package:hotelino_app/features/home/widgets/animated_favorite_button.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class HotelCard extends StatelessWidget {
   Hotel hotel;
 

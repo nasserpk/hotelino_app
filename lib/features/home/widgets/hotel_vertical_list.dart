@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/home/data/models/hotel.dart';
-import 'package:hotelino_app/features/home/widget/hotel_card_vertical.dart';
+import 'package:hotelino_app/features/home/widgets/hotel_card_vertical.dart';
 
 class HotelVerticalList extends StatelessWidget {
   final String title;

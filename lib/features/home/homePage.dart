@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/home/presentation/provider/home_provider.dart';
-import 'package:hotelino_app/features/home/widget/add_banner.dart';
-import 'package:hotelino_app/features/home/widget/home_appbar.dart';
-import 'package:hotelino_app/features/home/widget/hotel_list_section.dart';
-import 'package:hotelino_app/features/home/widget/hotel_vertical_list.dart';
-import 'package:hotelino_app/features/home/widget/serach_bar.dart';
-import 'package:hotelino_app/features/home/widget/story_carousel.dart';
+import 'package:hotelino_app/features/home/widgets/add_banner.dart';
+import 'package:hotelino_app/features/home/widgets/home_appbar.dart';
+import 'package:hotelino_app/features/home/widgets/hotel_list_section.dart';
+import 'package:hotelino_app/features/home/widgets/hotel_vertical_list.dart';
+import 'package:hotelino_app/features/home/widgets/serach_bar.dart';
+import 'package:hotelino_app/features/home/widgets/story_carousel.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {

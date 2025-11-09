@@ -22,13 +22,18 @@ class BookingProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setNumberOfGuests(String value) {
+  void setNumberOfGuest(String value) {
     _booking.numberOfGuests = value;
     notifyListeners();
   }
 
   void setRangeDate(JalaliRange value) {
     _booking.checkInOutRangeDate = value;
+    notifyListeners();
+  }
+
+  void setNationalCode(String value) {
+    _booking.nationalCode = value;
     notifyListeners();
   }
 }

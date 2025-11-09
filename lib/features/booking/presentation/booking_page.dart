@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/booking/presentation/booking_provider.dart';
+import 'package:hotelino_app/features/booking/presentation/widgets/booking_form_field.dart';
 import 'package:provider/provider.dart';
 
 class BookingPage extends StatefulWidget {
-  const BookingPage({super.key});
+  static final GlobalKey<BookingPageState> bookingPageKey =
+      GlobalKey<BookingPageState>();
+
+  BookingPage({Key? key}) : super(key: bookingPageKey);
 
   @override
-  State<BookingPage> createState() => _BookingPageState();
+  State<BookingPage> createState() => BookingPageState();
 }
 
-class _BookingPageState extends State<BookingPage> {
+class BookingPageState extends State<BookingPage> {
   final _formKey = GlobalKey<FormState>();
-
-  void resetForm() {
-    Future.delayed(Duration(milliseconds: 100), () {
-      _formKey.currentState?.reset();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,74 @@ class _BookingPageState extends State<BookingPage> {
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Consumer<BookingProvider>(
-            builder: (context, BookingProvider, child) {},
+            builder: (context, bookingProvider, child) {
+              return Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BookingFormField(
+                      title: 'نام و نام خانوادگی',
+                      hint: 'نام و نام خانوادگی خود را وارد کنید...',
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'لطفا نام خود را کامل بنویسید';
+                        }
+
+                        return null;
+                      },
+                      initialValue: bookingProvider.booking.fullName,
+                      onSaved: (newValue) {
+                        if (newValue != null) {
+                          bookingProvider.setName(newValue);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 8),
+                    BookingFormField(
+                      title: 'مقصد',
+                      hint: 'مقصد خود را وارد کنید...',
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'لطفا مقصد خود را مشخص کنید';
+                        }
+
+                        return null;
+                      },
+                      initialValue: bookingProvider.booking.destination,
+                      onSaved: (newValue) {
+                        if (newValue != null) {
+                          bookingProvider.setDestination(newValue);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 8),
+
+                    BookingFormField(
+                      title: 'تعداد نفرات',
+                      hint: 'تعداد نفرات خود را وارد کنید...',
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'لطفا تعداد نفرات را مشخص کنید';
+                        }
+
+                        return null;
+                      },
+                      initialValue: bookingProvider.booking.numberOfGuests,
+                      onSaved: (newValue) {
+                        if (newValue != null) {
+                          bookingProvider.setNumberOfGuest(newValue);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 8),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

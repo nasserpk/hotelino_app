@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/home/data/models/hotel.dart';
-import 'package:hotelino_app/features/home/widget/hotel_card.dart';
+import 'package:hotelino_app/features/home/widgets/hotel_card.dart';
 
 class HotelListSection extends StatelessWidget {
   const HotelListSection({

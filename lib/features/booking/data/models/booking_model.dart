@@ -6,6 +6,7 @@ class BookingModel {
   JalaliRange? checkInOutRangeDate;
   String numberOfGuests;
   String phoneNumber;
+  String nationalCode;
 
   BookingModel({
     this.fullName = '',
@@ -13,5 +14,6 @@ class BookingModel {
     this.checkInOutRangeDate,
     this.numberOfGuests = '',
     this.phoneNumber = '',
+    this.nationalCode = '',
   });
 }

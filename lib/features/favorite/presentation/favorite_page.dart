@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hotelino_app/features/favorite/widgets/favorite_item.dart';
 import 'package:hotelino_app/features/home/presentation/provider/favorite_item.provider.dart';
 import 'package:hotelino_app/features/home/presentation/provider/profile_provider.dart';
-import 'package:hotelino_app/features/home/widget/hotel_list_section.dart';
-import 'package:hotelino_app/features/home/widget/serach_bar.dart';
+import 'package:hotelino_app/features/home/widgets/hotel_list_section.dart';
+import 'package:hotelino_app/features/home/widgets/serach_bar.dart';
 import 'package:provider/provider.dart';
 
 class FavoritePage extends StatelessWidget {
@@ -31,7 +31,7 @@ class FavoritePage extends StatelessWidget {
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: favoriteProvider.favoriteHotelList.length,
+                  itemCount: favoriteProvider?.favoriteHotelList.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -39,9 +39,9 @@ class FavoritePage extends StatelessWidget {
                         vertical: 6,
                       ),
                       child: FavoriteHotelCard(
-                        hotel: favoriteProvider.favoriteHotelList[index],
+                        hotel: favoriteProvider!.favoriteHotelList[index],
                         onRemoveFavotiteClicked: (hotelId) {
-                          favoriteProvider.toggleFavorite(hotelId);
+                          favoriteProvider?.toggleFavorite(hotelId);
                         },
                       ),
                     );

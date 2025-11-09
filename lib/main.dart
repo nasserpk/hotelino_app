@@ -36,6 +36,7 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (_) => OnboardingProvider(OnboardingRepository()),
         ),
+        ChangeNotifierProvider(create: (_) => BookingProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider(hotelRepository)),
         ChangeNotifierProvider(
           create: (_) => ProfileProvider(ProfileRepository(), hotelRepository),
@@ -43,7 +44,6 @@ Future<void> main() async {
         ChangeNotifierProvider(
           create: (_) => FavotireItemProvider(hotelRepository),
         ),
-        ChangeNotifierProvider(create: (_) => BookingProvider()),
       ],
       child: const MyApp(),
     ),
