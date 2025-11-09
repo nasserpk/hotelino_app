@@ -74,7 +74,7 @@ class BookingPageState extends State<BookingPage> {
                         }
                       },
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 12),
                     DatePickerField(
                       title: 'تاریخ اقامت',
                       hint: 'بازه زمانی اقامت را مشخص کنید',
@@ -101,7 +101,6 @@ class BookingPageState extends State<BookingPage> {
                         if (value == null || value.isEmpty) {
                           return 'لطفا تعداد نفرات را مشخص کنید';
                         }
-
                         return null;
                       },
                       initialValue: bookingProvider.booking.numberOfGuests,
